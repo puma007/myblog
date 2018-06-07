@@ -30,7 +30,8 @@ public class LoginServlet extends HttpServlet {
         UserDao dao = new UserDao();
         User u = dao.existUser(name, password);
         if (u!=null){
-            response.sendRedirect("/manage.jsp");
+            request.getSession().setAttribute("user", u);
+            response.sendRedirect("/admin/manage.jsp");  
         }else{
             //String errorMessage = "用户名或密码错误";
             request.setAttribute("error", "无法登录");
