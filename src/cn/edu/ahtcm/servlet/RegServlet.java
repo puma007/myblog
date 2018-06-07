@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import cn.edu.ahtcm.bean.User;
 import cn.edu.ahtcm.dao.UserDao;
 
@@ -35,7 +37,9 @@ public class RegServlet extends HttpServlet {
         user.setPassword(password);
         UserDao userdao = new UserDao();
         userdao.saveUser(user);
-        response.sendRedirect("/ok.html");
+        //response.sendRedirect("/ok.html");
+        request.setAttribute("message", "注册成功");
+        request.getRequestDispatcher("ok.jsp").forward(request, response);
     
 	    /*
         response.setContentType("text/html;charset=UTF-8");

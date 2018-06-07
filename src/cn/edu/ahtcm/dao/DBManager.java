@@ -8,7 +8,7 @@ public class DBManager {
     public static Connection getConnection() {
         Connection conn = null;
         String url = "jdbc:mysql://localhost:3306/studentdb?"
-                + "user=root&password=123456&useUnicode=true&characterEncoding=UTF8";
+                + "user=root&password=nn&useUnicode=true&characterEncoding=UTF8";
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(url);
