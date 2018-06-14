@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.edu.ahtcm.bean.User;
 
@@ -62,8 +64,28 @@ public class UserDao {
         return user;
     }
     
-    /*
-     * 通过name判断用户名是否存在
-     */
+    public List<User> getAllUser(){
+        List<User> userList = new ArrayList<User>();
+        Connection conn = DBManager.getConnection();
+        String sql = "select * from users";
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setPassword(rs.getString("password"));
+                userList.add(user);
+            }
+            rs.close();
+            ps.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            DBManager.closeConnection(conn);
+        }
+        return userList;
+    }
     
 }

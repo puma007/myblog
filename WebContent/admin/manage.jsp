@@ -12,5 +12,10 @@ User user = (User)request.getSession().getAttribute("user");
 </head>
 <body>
 当前用户：<%out.print(user.getName()); %>[<a href="/LoginOut">退出</a>]
+<ul>
+    <li><a href="">修改密码</a></li>
+    <li><a href="/UserListServlet">用户列表</a></li>
+    <li><a href="">文章列表</a></li>
+</ul>
 </body>
 </html>
